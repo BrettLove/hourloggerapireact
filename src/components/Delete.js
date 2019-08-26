@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-const baseUrl = 'https://localhost:5001/api/hourlogger/';
-
 export class DeleteDay extends React.Component {
     constructor(props) {
         super(props);
@@ -13,7 +11,7 @@ export class DeleteDay extends React.Component {
             deleted: false
         }
 
-    const url = baseUrl + this.props.location.state.guid;
+    const url = this.props.baseUrl + this.props.location.state.guid;
 
     fetch(url)
         .then(response => response.json())
@@ -25,7 +23,7 @@ export class DeleteDay extends React.Component {
     }
 
     handleDelete() {
-        const url = baseUrl + this.props.location.state.guid;
+        const url = this.props.baseUrl + this.props.location.state.guid;
         fetch(url, {
             method: 'DELETE',
             headers: {

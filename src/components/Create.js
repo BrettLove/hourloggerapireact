@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const baseUrl = 'https://localhost:5001/api/hourlogger/';
-
 export class CreateDay extends React.Component {
     constructor(props) {
         super(props);
@@ -19,8 +17,8 @@ export class CreateDay extends React.Component {
 
     handleSubmit(e) {
 //        console.log(this.state);
-        console.log(baseUrl);
-        fetch(baseUrl, {
+        console.log(this.props.baseUrl);
+        fetch(this.props.baseUrl, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -52,6 +50,7 @@ export class CreateDay extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours}></input>
                     <input type="date" name="date" onChange={this.handleChange} value={this.state.date}></input>
+                    <input type="submit" value="Create"></input>
                 </form>
             </div>
         );

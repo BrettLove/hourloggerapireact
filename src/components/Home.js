@@ -1,8 +1,6 @@
 import React from 'react';
 import {Route, Redirect, Link} from 'react-router-dom';
 
-const baseUrl = 'https://localhost:5001/api/hourlogger/';
-
 export class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -11,13 +9,12 @@ export class Home extends React.Component {
             loading: true
         };
 
-    fetch(baseUrl)
+    fetch(this.props.baseUrl)
         .then(response => response.json())
         .then(data => {
         this.setState({ days: data, loading: false});
         })
 
-    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
 
     }
@@ -36,7 +33,10 @@ export class Home extends React.Component {
         <tr key={day.guid}>
             <td>{day.hours}</td>
             <td>{day.date.slice(0,(day.date.search(regex)))}</td>
-            <td><button onClick={this.handleEdit} id={day.guid}>Edit</button></td>
+            <td><Link to={{
+                pathname: '/edit',
+                state: { guid: day.guid }
+            }}><button>Edit</button></Link></td>
             <td><Link to={{
                             pathname: "/delete",
                             state: { guid: day.guid }
@@ -72,10 +72,6 @@ export class Home extends React.Component {
     );
     }
 
-    handleEdit(event) {
-    const url = baseUrl + event.target.id;
-    //console.log(event.target.id);
-    }
 
     // handleDelete(event) {
     // const url = baseUrl + event.target.id;

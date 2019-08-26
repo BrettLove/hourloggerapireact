@@ -93,10 +93,29 @@ export class EditDay extends React.Component {
         }
 
         return (
+            <div class="columns is-centered">
+            <div class="column is-one-quarter">
             <form onSubmit={this.handleSubmit}>
-                <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours} />
-                <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                <div class="field">
+                    <label class="label">Hours</label>
+                    <div class="control">
+                        <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours} />
+                    </div> 
+                </div> 
+                <div class="field">
+                    <label class="label">Date</label>                
+                    <div class="control">
+                        <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary">Submit</button>
+                    </div>
+                </div>
             </form>
+            </div>
+            </div>
         )
     }
 }

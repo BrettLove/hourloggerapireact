@@ -5,6 +5,12 @@ import { CreateDay } from './components/Create';
 import { DeleteDay } from './components/Delete';
 import { EditDay } from './components/Edit';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+//import './App.sass';
+import '../node_modules/bulma/css/bulma.css';
+//import '../node_modules/bulma/bulma.sass';
+//import "../node_modules/bulma/sass/utilities/_all.sass";
+//import '../node_modules/bulma/sass/base/_all.sass';
+//import "../node_modules/bulma/sass/grid/columns.sass";
 
 const baseUrl = 'https://localhost:5001/api/hourlogger/';
 

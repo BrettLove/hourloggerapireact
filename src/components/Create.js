@@ -8,10 +8,12 @@ export class CreateDay extends React.Component {
             hours: '',
             date: '',
             created: false,
+            canceled: false,
         }
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
 
     }
 
@@ -37,6 +39,10 @@ export class CreateDay extends React.Component {
         this.setState({ [e.target.name]: e.target.value});
     }
 
+    handleCancel() {
+        this.setState({ canceled: true });
+    }
+
     render() {
         if(this.state.created) {
             return <Redirect to= {{
@@ -45,13 +51,39 @@ export class CreateDay extends React.Component {
             }} />
         }
 
+        if(this.state.canceled) {
+            return <Redirect to= {{
+                pathname: '/'
+            }} />
+        }
+
         return (
-            <div>
+            <div class="columns is-centered">
+                <div class="column is-one-quarter">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours}></input>
-                    <input type="date" name="date" onChange={this.handleChange} value={this.state.date}></input>
-                    <input type="submit" value="Create"></input>
+
+
+
+                <div class="field">
+                    <label class="label">Hours</label>
+                    <div class="control">
+                        <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours} />
+                    </div> 
+                </div> 
+                <div class="field">
+                    <label class="label">Date</label>                
+                    <div class="control">
+                        <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary">Create</button>
+                        <button class="button is-text" onClick={this.handleCancel}>Cancel</button>
+                    </div>
+                </div>
                 </form>
+            </div>
             </div>
         );
     }

@@ -53,8 +53,13 @@ export class DeleteDay extends React.Component {
         }
 
         return (
-            <div><h1>Delete entry on {date} for {this.state.hours} hours? </h1>
-            <button onClick={this.handleDelete}>Yes, delete!</button></div>
+            <div class="columns is-centered">
+            <div class="column is-one-quarter">
+                <div class = "control"><h1>Delete entry on {date} for {this.state.hours} hours? </h1></div>
+                <div class="control"><button class="button is-primary" onClick={this.handleDelete}>Yes, delete!</button></div>
+            </div>
+            </div>
+            
         );
     }
 }

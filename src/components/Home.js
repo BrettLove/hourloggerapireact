@@ -31,16 +31,16 @@ export class Home extends React.Component {
     const dayRows = days.map((day) => {
         return (
         <tr key={day.guid}>
-            <td>{day.hours}</td>
+            <td class="has-text-centered">{day.hours}</td>
             <td>{day.date.slice(0,(day.date.search(regex)))}</td>
             <td><Link to={{
                 pathname: '/edit',
                 state: { guid: day.guid }
-            }}><button>Edit</button></Link></td>
+            }}><button class="button is-link">Edit</button></Link></td>
             <td><Link to={{
                             pathname: "/delete",
                             state: { guid: day.guid }
-                          }}><button>Delete</button></Link></td>
+                          }}><button class="button is-danger">Delete</button></Link></td>
         </tr>
         )
     });
@@ -52,23 +52,31 @@ export class Home extends React.Component {
     }
     if(message) {
         tableheader = (
-            <thead>
                 <tr>
                     <th rowSpan='4'>
                         {message}
                     </th>
                 </tr>
-            </thead>);
+                );
     } 
 
     return (
-        <table>
+        <div class="columns is-centered">
+        <table class="table is-striped is-centered">
+            <thead>
             {tableheader}
+            <tr><th>Hours</th><th>Date</th><th></th><th></th></tr>
+            </thead>
             <tbody>
             {dayRows}
-            <tr><td><Link to="/create">Create a new entry.</Link></td></tr>
             </tbody>
+            <tfoot>
+            <tr><td rowspan="4" align="center"><Link to="/create">Create a new entry.</Link></td></tr>
+            </tfoot>
+            
         </table>
+        
+        </div>
     );
     }
 

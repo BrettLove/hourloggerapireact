@@ -86,8 +86,9 @@ export class EditDay extends React.Component {
     })));
     }
 
-    handleCancel() {
+    handleCancel(e) {
         this.setState({ canceled: true });
+        e.preventDefault();
     }
 
     render() {

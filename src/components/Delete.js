@@ -41,8 +41,9 @@ export class DeleteDay extends React.Component {
     })));
     }
     
-    handleCancel() {
+    handleCancel(e) {
         this.setState({ canceled: true });
+        e.preventDefault();
     }
 
     render() {

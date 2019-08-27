@@ -39,8 +39,9 @@ export class CreateDay extends React.Component {
         this.setState({ [e.target.name]: e.target.value});
     }
 
-    handleCancel() {
+    handleCancel(e) {
         this.setState({ canceled: true });
+        e.preventDefault();
     }
 
     render() {

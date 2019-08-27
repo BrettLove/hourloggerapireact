@@ -31,51 +31,47 @@ export class Home extends React.Component {
     const dayRows = days.map((day) => {
         return (
         <tr key={day.guid}>
-            <td class="has-text-centered">{day.hours}</td>
+            <td className="has-text-centered">{day.hours}</td>
             <td>{day.date.slice(0,(day.date.search(regex)))}</td>
             <td><Link to={{
                 pathname: '/edit',
                 state: { guid: day.guid }
-            }}><button class="button is-link">Edit</button></Link></td>
+            }}><button className="button is-info">Edit</button></Link></td>
             <td><Link to={{
                             pathname: "/delete",
                             state: { guid: day.guid }
-                          }}><button class="button is-danger">Delete</button></Link></td>
+                          }}><button className="button is-danger">Delete</button></Link></td>
         </tr>
         )
     });
 
-    var tableheader;
+    var messageDisplay;
     let message;
     if(this.props.location.state) {
         message = this.props.location.state.message;
     }
     if(message) {
-        tableheader = (
-                <tr>
-                    <th rowSpan='4'>
-                        {message}
-                    </th>
-                </tr>
-                );
+        messageDisplay = (
+            <div className="container is-centered has-background-warning is-fullhd">
+            <h2 className="subtitle has-padding-5">{message}</h2>
+            </div>)
     } 
 
     return (
-        <div class="columns is-centered">
-        <table class="table is-striped is-centered">
+        <div>
+        {messageDisplay}
+        <div className="columns is-centered has-padding-20">
+        <table className="table is-striped is-centered">
             <thead>
-            {tableheader}
+            
             <tr><th>Hours</th><th>Date</th><th></th><th></th></tr>
             </thead>
             <tbody>
             {dayRows}
             </tbody>
-            <tfoot>
-            <tr><td rowspan="4" align="center"><Link to="/create">Create a new entry.</Link></td></tr>
-            </tfoot>
             
         </table>
-        
+        </div>
         </div>
     );
     }

@@ -8,7 +8,8 @@ export class DeleteDay extends React.Component {
             hours: 0,
             date: '',
             loading: true,
-            deleted: false
+            deleted: false,
+            canceled: false,
         }
 
     const url = this.props.baseUrl + this.props.location.state.guid;
@@ -20,6 +21,7 @@ export class DeleteDay extends React.Component {
         })
 
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleDelete() {
@@ -39,6 +41,10 @@ export class DeleteDay extends React.Component {
     })));
     }
     
+    handleCancel() {
+        this.setState({ canceled: true });
+    }
+
     render() {
         let regex = new RegExp('T')
         let date = this.state.date.slice(0,this.state.date.search(regex));
@@ -52,11 +58,15 @@ export class DeleteDay extends React.Component {
             }} />
         }
 
+        if(this.state.canceled) {
+            return <Redirect to="/" />;
+        }
+
         return (
-            <div class="columns is-centered">
-            <div class="column is-one-quarter">
-                <div class = "control"><h1>Delete entry on {date} for {this.state.hours} hours? </h1></div>
-                <div class="control"><button class="button is-primary" onClick={this.handleDelete}>Yes, delete!</button></div>
+            <div className="columns is-centered has-padding-20">
+            <div className="column is-one-quarter">
+                <div className = "control" ><h1>Delete entry on {date} for {this.state.hours} hours? </h1></div>
+                <div className="control has-padding-5"><button className="button is-info" onClick={this.handleDelete}>Yes, delete!</button><button className="button is-text" onClick={this.handleCancel}>Cancel</button></div>
             </div>
             </div>
             

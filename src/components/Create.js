@@ -47,7 +47,7 @@ export class CreateDay extends React.Component {
         if(this.state.created) {
             return <Redirect to= {{
                 pathname: '/',
-                state: { message: 'Created.' }
+                state: { message: 'Added.' }
             }} />
         }
 
@@ -58,28 +58,28 @@ export class CreateDay extends React.Component {
         }
 
         return (
-            <div class="columns is-centered">
-                <div class="column is-one-quarter">
+            <div className="columns is-centered has-padding-20">
+                <div className="column is-one-quarter">
                 <form onSubmit={this.handleSubmit}>
 
 
 
-                <div class="field">
-                    <label class="label">Hours</label>
-                    <div class="control">
+                <div className="field">
+                    <label className="label">Hours</label>
+                    <div className="control">
                         <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours} />
                     </div> 
                 </div> 
-                <div class="field">
-                    <label class="label">Date</label>                
-                    <div class="control">
+                <div className="field">
+                    <label className="label">Date</label>                
+                    <div className="control">
                         <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
                     </div>
                 </div>
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary">Create</button>
-                        <button class="button is-text" onClick={this.handleCancel}>Cancel</button>
+                <div className="field">
+                    <div className="control">
+                        <button className="button is-info">Add Entry</button>
+                        <button className="button is-text" onClick={this.handleCancel}>Cancel</button>
                     </div>
                 </div>
                 </form>

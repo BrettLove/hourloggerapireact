@@ -10,6 +10,7 @@ export class EditDay extends React.Component {
             date: '',
             loading: true,
             edited: false,
+            canceled: false,
         };
 
         var url = this.props.baseUrl + this.props.location.state.guid;
@@ -32,6 +33,7 @@ export class EditDay extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleChange(e) {
@@ -84,6 +86,10 @@ export class EditDay extends React.Component {
     })));
     }
 
+    handleCancel() {
+        this.setState({ canceled: true });
+    }
+
     render() {
         if(this.state.edited) {
             return <Redirect to = {{
@@ -92,25 +98,30 @@ export class EditDay extends React.Component {
             }} />
         }
 
+        if(this.state.canceled) {
+            return <Redirect to="/" />;
+        }
+
         return (
-            <div class="columns is-centered">
-            <div class="column is-one-quarter">
+            <div className="columns is-centered  has-padding-20">
+            <div className="column is-one-quarter">
             <form onSubmit={this.handleSubmit}>
-                <div class="field">
-                    <label class="label">Hours</label>
-                    <div class="control">
+                <div className="field">
+                    <label className="label">Hours</label>
+                    <div className="control">
                         <input type="number" name="hours" min="0" step="0.5" onChange={this.handleChange} value={this.state.hours} />
                     </div> 
                 </div> 
-                <div class="field">
-                    <label class="label">Date</label>                
-                    <div class="control">
+                <div className="field">
+                    <label className="label">Date</label>                
+                    <div className="control">
                         <input type="date" name="date" onChange={this.handleChange} value={this.state.date} />
                     </div>
                 </div>
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary">Submit</button>
+                <div className="field">
+                    <div className="control">
+                        <button className="button is-info">Update</button>
+                        <button className="button is-text" onClick={this.handleCancel}>Cancel</button>
                     </div>
                 </div>
             </form>

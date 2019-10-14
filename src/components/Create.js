@@ -79,7 +79,7 @@ export class CreateDay extends React.Component {
                 </div>
                 <div className="field">
                     <div className="control">
-                        <button className="button is-info">Add Entry</button>
+                        <button className="button is-info">Add</button>
                         <button className="button is-text" onClick={this.handleCancel}>Cancel</button>
                     </div>
                 </div>

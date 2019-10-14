@@ -95,7 +95,7 @@ export class EditDay extends React.Component {
         if(this.state.edited) {
             return <Redirect to = {{
                 pathname: '/',
-                state: { message: 'Record updated.' }
+                state: { message: 'Updated.' }
             }} />
         }
 

@@ -14,7 +14,7 @@ import '../node_modules/bulma-helpers/css/bulma-helpers.css';
 //import '../node_modules/bulma/sass/base/_all.sass';
 //import "../node_modules/bulma/sass/grid/columns.sass";
 
-const baseUrl = 'https://localhost:5001/api/hourlogger/';
+const baseUrl = 'api/hourlogger/';
 
 function App() {
   return (
